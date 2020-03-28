@@ -48,8 +48,8 @@ public class HowManyMeetingRooms {
         int minRequired = Integer.MIN_VALUE;
         for (int i = 1; i < intervals.size(); i++) { //O(nlogn)
             // Check if interval with earlier ending time is less than start time of current interval
-            while (!queue.isEmpty() && intervals.get(i).getStart() >= queue.peek().getEnd())  //O(C) or O(1)
-                queue.remove(); // O(1)
+            while (!queue.isEmpty() && intervals.get(i).getStart() >= queue.peek().getEnd())
+                queue.remove(); // O(logn)
 
             queue.add(intervals.get(i)); // O(logn)
             minRequired = Math.max(minRequired, queue.size());
