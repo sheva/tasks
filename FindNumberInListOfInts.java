@@ -8,27 +8,43 @@ import java.util.*;
 public class FindNumberInListOfInts {
 
     @Test
-    public void test() {
-        Assertions.assertTrue(findNumber(Arrays.asList(1,1,5,8), Arrays.asList(1,5)));
-        Assertions.assertTrue(findNumber(Arrays.asList(1,1,5,8), Arrays.asList(1)));
-        Assertions.assertTrue(findNumber(Arrays.asList(1,1,5,8,0,3,5,1), Arrays.asList(5,1)));
-        Assertions.assertFalse(findNumber(Arrays.asList(1,1,5,8,0,3,5,1), Arrays.asList(5,8,0,5)));
-        Assertions.assertFalse(findNumber(Arrays.asList(1,1,5,8,0,3,5,1), Arrays.asList(9)));
-        Assertions.assertTrue(findNumber(Arrays.asList(1,1,5,8,0,3,5,1), Arrays.asList(0)));
+    public void testFindNumber1() {
+        Assertions.assertTrue(findNumber(Arrays.asList(1, 1, 5, 8), Arrays.asList(1, 5)));
+        Assertions.assertTrue(findNumber(Arrays.asList(1, 1, 5, 8), Arrays.asList(1)));
+        Assertions.assertTrue(findNumber(Arrays.asList(1, 1, 5, 8, 0, 3, 5, 1), Arrays.asList(5, 1)));
+        Assertions.assertFalse(findNumber(Arrays.asList(1, 1, 5, 8, 0, 3, 5, 1), Arrays.asList(5, 8, 0, 5)));
+        Assertions.assertFalse(findNumber(Arrays.asList(1, 1, 5, 8, 0, 3, 5, 1), Arrays.asList(9)));
+        Assertions.assertTrue(findNumber(Arrays.asList(1, 1, 5, 8, 0, 3, 5, 1), Arrays.asList(0)));
+    }
 
-        Assertions.assertTrue(knuthMorrisPratt(Arrays.asList(1,1,5,8), Arrays.asList(1,5)));
-        Assertions.assertTrue(knuthMorrisPratt(Arrays.asList(1,1,5,8), Arrays.asList(1)));
-        Assertions.assertTrue(knuthMorrisPratt(Arrays.asList(1,1,5,8,0,3,5,1), Arrays.asList(5,1)));
-        Assertions.assertFalse(knuthMorrisPratt(Arrays.asList(1,1,5,8,0,3,5,1), Arrays.asList(5,8,0,5)));
-        Assertions.assertFalse(knuthMorrisPratt(Arrays.asList(1,1,5,8,0,3,5,1), Arrays.asList(9)));
-        Assertions.assertTrue(knuthMorrisPratt(Arrays.asList(1,1,5,8,0,3,5,1), Arrays.asList(0)));
+    @Test
+    public void testFindNumber_Iterators() {
+        Assertions.assertTrue(findNumber_Iterators(Arrays.asList(1, 1, 5, 8), Arrays.asList(1, 5)));
+        Assertions.assertTrue(findNumber_Iterators(Arrays.asList(1, 1, 5, 8), Arrays.asList(1)));
+        Assertions.assertTrue(findNumber_Iterators(Arrays.asList(1, 1, 5, 8, 0, 3, 5, 1), Arrays.asList(5, 1)));
+        Assertions.assertFalse(findNumber_Iterators(Arrays.asList(1, 1, 5, 8, 0, 3, 5, 1), Arrays.asList(5, 8, 0, 5)));
+        Assertions.assertFalse(findNumber_Iterators(Arrays.asList(1, 1, 5, 8, 0, 3, 5, 1), Arrays.asList(9)));
+        Assertions.assertTrue(findNumber_Iterators(Arrays.asList(1, 1, 5, 8, 0, 3, 5, 1), Arrays.asList(0)));
+    }
 
-        Assertions.assertTrue(findNumber2(Arrays.asList(1,1,5,8), Arrays.asList(1,5)));
-        Assertions.assertTrue(findNumber2(Arrays.asList(1,1,5,8), Arrays.asList(1)));
-        Assertions.assertTrue(findNumber2(Arrays.asList(1,1,5,8,0,3,5,1), Arrays.asList(5,1)));
-        Assertions.assertFalse(findNumber2(Arrays.asList(1,1,5,8,0,3,5,1), Arrays.asList(5,8,0,5)));
-        Assertions.assertFalse(findNumber2(Arrays.asList(1,1,5,8,0,3,5,1), Arrays.asList(9)));
-        Assertions.assertTrue(findNumber2(Arrays.asList(1,1,5,8,0,3,5,1), Arrays.asList(0)));
+    @Test
+    public void testFindNumber_knuthMorrisPratt() {
+        Assertions.assertTrue(knuthMorrisPratt(Arrays.asList(1, 1, 5, 8), Arrays.asList(1, 5)));
+        Assertions.assertTrue(knuthMorrisPratt(Arrays.asList(1, 1, 5, 8), Arrays.asList(1)));
+        Assertions.assertTrue(knuthMorrisPratt(Arrays.asList(1, 1, 5, 8, 0, 3, 5, 1), Arrays.asList(5, 1)));
+        Assertions.assertFalse(knuthMorrisPratt(Arrays.asList(1, 1, 5, 8, 0, 3, 5, 1), Arrays.asList(5, 8, 0, 5)));
+        Assertions.assertFalse(knuthMorrisPratt(Arrays.asList(1, 1, 5, 8, 0, 3, 5, 1), Arrays.asList(9)));
+        Assertions.assertTrue(knuthMorrisPratt(Arrays.asList(1, 1, 5, 8, 0, 3, 5, 1), Arrays.asList(0)));
+    }
+
+    @Test
+    public void testFindNumber_Nodes() {
+        Assertions.assertTrue(findNumber(Node.constructNodes(1,1,5,8), Node.constructNodes(1, 5)));
+        Assertions.assertTrue(findNumber(Node.constructNodes(1,1,5,8), Node.constructNodes(1)));
+        Assertions.assertTrue(findNumber(Node.constructNodes(1,1,5,8,0,3,5,1), Node.constructNodes(5,1)));
+        Assertions.assertFalse(findNumber(Node.constructNodes(1,1,5,8,0,3,5,1), Node.constructNodes(5,8,0,5)));
+        Assertions.assertFalse(findNumber(Node.constructNodes(1,1,5,8,0,3,5,1), Node.constructNodes(9)));
+        Assertions.assertTrue(findNumber(Node.constructNodes(1,1,5,8,0,3,5,1), Node.constructNodes(0)));
     }
 
     // Time complexity - O(l.size() * number.size())
@@ -42,7 +58,59 @@ public class FindNumberInListOfInts {
         return false;
     }
 
-    private boolean findNumber2(List<Integer> l, List<Integer> number) {
+    private static class Node<T> implements Iterator<Node<T>> {
+        private Node<T> next;
+        private T value;
+
+        private Node() {}
+
+        private Node(T value, Node<T> next) {
+            this.next = next;
+            this.value = value;
+        }
+
+        private int size() {
+            return 1 + (hasNext() ? next.size() : 0);
+        }
+
+        @Override
+        public boolean hasNext() {
+            return next != null;
+        }
+
+        @Override
+        public Node<T> next() {
+            return next;
+        }
+
+        private static Node<Integer> constructNodes(int... digits) {
+            Node<Integer> dummy = new Node<>(1, new Node<>());
+            Node<Integer> c = dummy.next;
+            for (int i = 0; i < digits.length; i++) {
+                c.value = digits[i];
+                if (i < digits.length - 1) c.next = new Node<>();
+                c = c.next;
+            }
+            return dummy.next;
+        }
+    }
+
+    private boolean findNumber(Node<Integer> l, Node<Integer> number) {
+        Node<Integer> c = l;
+        while (c.hasNext()) {
+            Node<Integer> n = number;
+            Node<Integer> d = c;
+            while(d.value.equals(n.value)) {
+                if (!n.hasNext()) return true;
+                d = d.next;
+                n = n.next;
+            }
+            c = c.next;
+        }
+        return false;
+    }
+
+    private boolean findNumber_Iterators(List<Integer> l, List<Integer> number) {
         int checked = 0;
         while (checked < l.size()) {
             Iterator<Integer> listIter = l.iterator();
